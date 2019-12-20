@@ -1,4 +1,5 @@
 <?php include "INCLUDES/header.php" ?>
+<?php include "INCLUDES/db.php" ?>
 <!-- end s-header -->
 
 
@@ -62,7 +63,26 @@
                 <h2>Get In Touched.</h2>
 
 
+<?php
+$message ="All fields are needed!!";// This is in the PHP file and sends a Javascript alert to the client
 
+ if (isset($_POST['submit'])) {
+     if($_POST['full_name']==""||$_POST['Email']==""||$_POST['address']==""||$_POST['cMessage']==""){
+   
+    echo "<script type='text/javascript'>alert('$message');</script>";// This is in the PHP file and sends a Javascript alert to the client
+        
+     }else{
+      $full_name = $_POST['full_name'];
+      $Email = $_POST['Email'];
+      $address = $_POST['address'];
+      $cMessage = $_POST['cMessage'];
+
+$query = "INSERT INTO contact(full_name, email, address, message) VALUES ('{$full_name}', '{$Email}', '{$address}', '{$cMessage}') ";
+mysqli_query($connection,$query);
+
+}}
+
+?>
 
 
 
@@ -74,15 +94,15 @@
                     <fieldset>
 
                         <div class="form-field">
-                            <input name="cName" id="cName" class="h-full-width h-remove-bottom" placeholder="Your Name" value="" type="text">
+                            <input name="full_name" id="full_name" class="h-full-width h-remove-bottom" placeholder="Your Name" value="" type="text">
                         </div>
 
                         <div class="form-field">
-                            <input name="cEmail" id="cEmail" class="h-full-width h-remove-bottom" placeholder="Your Email" value="" type="text">
+                            <input name="Email" id="Email" class="h-full-width h-remove-bottom" placeholder="Your Email" value="" type="text">
                         </div>
 
                         <div class="form-field">
-                            <input name="cWebsite" id="cWebsite" class="h-full-width h-remove-bottom" placeholder="Website" value="" type="text">
+                            <input name="address" id="address" class="h-full-width h-remove-bottom" placeholder="address" value="" type="text">
                         </div>
 
                         <div class="message form-field">

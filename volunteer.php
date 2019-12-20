@@ -152,10 +152,15 @@
             </p>
 
             <?php
-if (isset($_POST['submit'])) {
+$message ="All fields are needed!!";// This is in the PHP file and sends a Javascript alert to the client
 
-    // $id = $_id['id'];
-    $full_name = $_POST['full_name'];
+if (isset($_POST['submit'])) { 
+    if($_POST['full_name']==""||$_POST['Email']==""||$_POST['address']==""||$_POST['cMessage']==""){
+   
+        echo "<script type='text/javascript'>alert('$message');</script>";// This is in the PHP file and sends a Javascript alert to the client
+            
+         }else{
+    $full_name = $_POST['full_name']; 
     $email = $_POST['email'];
     $facebook_url = $_POST['facebook_url'];
     $ministry_volunteer = $_POST['ministry_volunteer'];
@@ -172,7 +177,7 @@ $query =  "INSERT INTO refem(full_name, email, facebook_url, ministry_volunteer,
     // if (!$create_refem) { //if there is no connection
         // die('QUERY FAILED' . mysqli_error($connection));
     // }
-
+    }
 }
 ?>
             <form name="volunteerForm" id="volunteerForm" class="volunteerForm" method="POST" action="volunteer.php"
